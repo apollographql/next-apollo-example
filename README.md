@@ -1,6 +1,6 @@
 ## `next-apollo-defer-example`
 
-This is a demo app based on the Next.js example app [with-apollo](https://github.com/vercel/next.js/tree/canary/examples/with-apollo) that demonstrates a Next.js app with Apollo Client web 3.7 beta and .
+This is a demo app based on the Next.js example app [with-apollo](https://github.com/vercel/next.js/tree/canary/examples/with-apollo) that demonstrates a Next.js app with Apollo Client web 3.7 beta and [apollographql/router@v1.0.0-alpha.3](https://github.com/apollographql/router/releases/tag/v1.0.0-alpha.3).
 
 ### Building the AC web beta with `@defer` locally
 1. Clone the [`apollo-client` repo](https://github.com/apollographql/apollo-client) and checkout branch [`issue-8184-defer-support`](https://github.com/apollographql/apollo-client/pull/10018)
@@ -17,4 +17,4 @@ This is a demo app based on the Next.js example app [with-apollo](https://github
 1. Clone [this repo](https://github.com/alessbell/next-apollo-defer-example) in the same directory where `apollo-client` was cloned
 1. Run `npm i && npm i ../apollo-client/dist/apollo-client-3.7.0-beta.6.tgz`
 1. In VSCode, from the Run & Debug menu select "Next.js: debug full stack"
-1. You can now set breakpoints via your IDE in server- and client-side code 🐙
+1. You can now set breakpoints via your IDE in server- and client-side code and visit http://localhost:3000 to view the app 🐙
