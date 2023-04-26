@@ -6,13 +6,12 @@
     "start": "next start"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.0-beta.7",
-    "deepmerge": "^4.2.2",
-    "graphql": "^15.3.0",
-    "lodash": "4.17.20",
-    "next": "latest",
-    "prop-types": "^15.6.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "@apollo/client": "3.7.12",
+    "deepmerge": "4.3.1",
+    "graphql": "16.6.0",
+    "lodash": "4.17.21",
+    "next": "13.3.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   }
 }

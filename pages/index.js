@@ -1,35 +1,49 @@
-import App from '../components/App'
-import InfoBox from '../components/InfoBox'
-import Header from '../components/Header'
-import Submit from '../components/Submit'
-import PostList, {
-  DEFERRED_QUERY,
-  // ALL_USERS_QUERY,
-  // allUsersQueryVars,
-} from '../components/PostList'
-import { initializeApollo, addApolloState } from '../lib/apolloClient'
+import { gql, useQuery } from "@apollo/client";
+import App from "../components/App";
+import { initializeApollo, addApolloState } from "../lib/apolloClient";
 
-const IndexPage = () => (
-  <App>
-    <Header />
-    <InfoBox>ℹ️ This page shows how to use SSG with Apollo.</InfoBox>
-    <Submit />
-    <PostList />
-  </App>
-)
+const srcTrailFragment = gql`
+  fragment srcTrailFragment on Trail {
+    name
+    status
+    difficulty
+  }
+`;
 
-export async function getStaticProps() {
-  const apolloClient = initializeApollo()
+const AllTrailsQuery = gql`
+  query srcAllTrailsQuery {
+    allTrails {
+      id
+      ...srcTrailFragment
+    }
+  }
+  ${srcTrailFragment}
+`;
+
+const SSRPage = () => {
+  // The data is already in the cache on initial load:
+  // no network request is made in the browser, but we use useQuery to retrieve
+  // the data for `AllTrailsQuery`—already fetched in getServerSideProps—
+  // from the cache.
+  const { data } = useQuery(AllTrailsQuery);
+  return (
+    <App>
+      {data.allTrails.map(({ id, name }) => (
+        <div key={id}>{name}</div>
+      ))}
+    </App>
+  );
+};
+
+export async function getServerSideProps() {
+  const apolloClient = initializeApollo();
 
   await apolloClient.query({
-    query: DEFERRED_QUERY,
-    // variables: allUsersQueryVars,
-  })
-
+    query: AllTrailsQuery,
+  });
   return addApolloState(apolloClient, {
     props: {},
-    revalidate: 1,
-  })
+  });
 }
 
-export default IndexPage
+export default SSRPage;
